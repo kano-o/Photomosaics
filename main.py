@@ -64,6 +64,4 @@ def merge_pixel(x, y):
     b = round(b / divider)
     #print('R:', r, '\n' + 'G:', g, '\n' + 'B:', b)
     
-
-
 #print(pixel_matrix)
