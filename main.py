@@ -1,6 +1,8 @@
 from PIL import Image
+import numpy as np
+from matplotlib import cm
 #insert file name in this string
-picture_name = 'typing-man-typing.gif'
+picture_name = 'Rainbow-gradient-fully-saturated.png'
 im = Image.open(picture_name)
 
 print('Successfully loaded image!')
@@ -18,8 +20,6 @@ for w in range(wdh):
     for h in range(hgt):
         r, g, b = rgb_im.getpixel((w, h))
         pixel_matrix[h][w] = (r, g, b)
-
-#print(pixel_matrix)
 
 #merges 11x11 pixels into 1 pixel
 def merge_pixel(x, y):
@@ -62,6 +62,25 @@ def merge_pixel(x, y):
     r = round(r / divider)
     g = round(g / divider)
     b = round(b / divider)
-    #print('R:', r, '\n' + 'G:', g, '\n' + 'B:', b)
-    
-#print(pixel_matrix)
+    print('R:', r, '\n' + 'G:', g, '\n' + 'B:', b)
+
+    for i in range(x-5, x+6):
+        for j in range(y-5, y+6):
+            pixel_matrix[i][j] = (r, g, b)
+
+#merge_pixel(412, 412)
+
+for row in range(len(pixel_matrix)):
+    pixel_matrix[row] = [pixel for row in pixel_matrix[row] for pixel in row]
+
+w = []
+for row in pixel_matrix:
+    w.append(len(row) // 3)
+print(f"width: {w[0]}")
+print(f"height: {len(w)}")
+
+arr = np.array(pixel_matrix)
+
+im2 = Image.fromarray(arr)
+
+im2.show()
