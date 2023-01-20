@@ -2,7 +2,7 @@ from PIL import Image
 import numpy as np
 from matplotlib import cm
 #insert file name in this string
-picture_name = 'Rainbow-gradient-fully-saturated.png'
+picture_name = 'typing-man-typing.gif'
 im = Image.open(picture_name)
 
 print('Successfully loaded image!')
